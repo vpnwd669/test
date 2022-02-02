@@ -2,6 +2,7 @@ FROM cimg/ruby:2.7.1
 
 ARG TINI_VERSION=v0.19.0
 
+
 RUN sudo apt-get update -qq \
   && sudo apt-get install -yq --no-install-recommends \
       libxml2-dev libxslt-dev libtool pkg-config \
