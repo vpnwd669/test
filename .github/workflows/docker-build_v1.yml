@@ -13,16 +13,21 @@ jobs:
     - name: Build the Docker image
       working-directory: app
       run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
-    - name: Login Docker
-      uses: docker/login-action@v1
-      with:
-        username: ${{ secrets.DOCKERHUB_USERNAME }}
-        password:  ${{ secrets.DOCKERHUB_TOKEN }}
-    - name: Build and push
-      id: docker_build
-      uses: docker/build-push-action@v2
-      with:
-        push: true
-        tags: ${{ secrets.DOCKERHUB_USERNAME }}/gitgubaction:latest
+  docker:
+    name: Login Docker
+    runs-on: ubunu-latest
+    steps:
+      - users: actions/checkout@v2
+      - name: Login to Docker
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password:  ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: Build and push
+        id: docker_build
+        uses: docker/build-push-action@v2
+        with:
+          push: true
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/gitgubaction:latest
     - name: Image digest
       run:  echo ${{ steps.docker_build.outputs.digest }}
