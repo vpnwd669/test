@@ -1,0 +1,25 @@
+name: Docker Image CI
+
+on: [push]
+    
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+
+  docker:
+    name: Docker Login
+    needs: [build]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: docker/login-action@v1.12.0
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password:  ${{ secrets.DOCKERHUB_TOKEN }}
+    
