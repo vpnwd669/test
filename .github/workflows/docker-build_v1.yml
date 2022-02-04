@@ -40,6 +40,17 @@ jobs:
           #  ghcr.io/oskardudycz/eventsourcing.nodejs/simple:${{ steps.meta.outputs.labels }}
           # build on feature branches, push only on main branch
           push: true
-
+    
+      - name: Run Trivy vulnerability scanner
+        uses: aquasecurity/trivy-action@master
+      
+        with:
+          image-ref: 'docker.io/vpnwd669/test_container:${{ github.sha }}'
+          exit-code: '1'
+          ignore-unfixed: true
+          vuln-type: "os,library"
+          severity: "CRITICAL"
+          format: "table"
+          
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
