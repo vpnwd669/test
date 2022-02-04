@@ -1,4 +1,4 @@
-FROM cimg/ruby:2.7.2
+FROM cimg/ruby:2.7.1
 
 ARG TINI_VERSION=v0.19.0
 RUN sudo apt-get update -qq \
