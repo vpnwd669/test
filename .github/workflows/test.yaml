@@ -1,4 +1,5 @@
 name: docker-build
+on: [push]
 description: "Action that build and publish image to repo"
 inputs:
   docker-path:
