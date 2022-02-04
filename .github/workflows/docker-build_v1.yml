@@ -35,7 +35,7 @@ jobs:
           context: ./app
           # Note: tags has to be all lower-case
           tags: |
-            vpnwd669/test_container:${{needs.tag.outputs.new_tag}} 
+            vpnwd669/test_container:${{ steps.docker_meta.outputs.tags }}
           #  ghcr.io/oskardudycz/eventsourcing.nodejs/simple:${{ steps.meta.outputs.labels }}
           # build on feature branches, push only on main branch
           push: true
