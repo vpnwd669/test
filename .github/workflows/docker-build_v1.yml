@@ -3,9 +3,9 @@ name: Build and Publish
 on: 
   push:
     branches:
-    - 'main/all'
-#    paths:
-#    - 'app/**'
+      - main
+    paths:
+      - app/**
 jobs:
 
   defaults:
