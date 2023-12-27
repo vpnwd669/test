@@ -11,6 +11,7 @@ permissions:
 on:
   push:
     branches: code
+    
 jobs:
   build-and-deploy:
     name: Build and deploy
