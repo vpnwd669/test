@@ -10,7 +10,7 @@ permissions:
   statuses: write
 on:
   push:
-    branches: main
+    branches: code
 jobs:
   build-and-deploy:
     name: Build and deploy
